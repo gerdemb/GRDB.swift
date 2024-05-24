@@ -645,7 +645,7 @@ extension DatabasePool: DatabaseReader {
     // MARK: - WAL Snapshot Transactions
     
     // swiftlint:disable:next line_length
-#if SQLITE_ENABLE_SNAPSHOT || (!GRDBCUSTOMSQLITE && !GRDBCIPHER && (compiler(>=5.7.1) || !(os(macOS) || targetEnvironment(macCatalyst))))
+#if SQLITE_ENABLE_SNAPSHOT || (!GRDBCUSTOMSQLITE && !GRDBCIPHER && (!os(Linux) && (compiler(>=5.7.1) || !(os(macOS) || targetEnvironment(macCatalyst)))))
     /// Returns a long-lived WAL snapshot transaction on a reader connection.
     func walSnapshotTransaction() throws -> WALSnapshotTransaction {
         guard let readerPool else {
@@ -871,7 +871,7 @@ extension DatabasePool {
     }
     
     // swiftlint:disable:next line_length
-#if SQLITE_ENABLE_SNAPSHOT || (!GRDBCUSTOMSQLITE && !GRDBCIPHER && (compiler(>=5.7.1) || !(os(macOS) || targetEnvironment(macCatalyst))))
+#if SQLITE_ENABLE_SNAPSHOT || (!GRDBCUSTOMSQLITE && !GRDBCIPHER && (!os(Linux) && (compiler(>=5.7.1) || !(os(macOS) || targetEnvironment(macCatalyst)))))
     /// Creates a database snapshot that allows concurrent accesses to an
     /// unchanging database content, as it exists at the moment the snapshot
     /// is created.

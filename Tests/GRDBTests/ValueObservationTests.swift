@@ -421,7 +421,7 @@ class ValueObservationTests: GRDBTestCase {
         }
         
         let expectedCounts: [Int]
-#if SQLITE_ENABLE_SNAPSHOT || (!GRDBCUSTOMSQLITE && !GRDBCIPHER && (compiler(>=5.7.1) || !(os(macOS) || targetEnvironment(macCatalyst))))
+#if SQLITE_ENABLE_SNAPSHOT || (!GRDBCUSTOMSQLITE && !GRDBCIPHER && (!os(Linux) && (compiler(>=5.7.1) || !(os(macOS) || targetEnvironment(macCatalyst)))))
         // Optimization available
         expectedCounts = [0, 1]
 #else
@@ -471,7 +471,7 @@ class ValueObservationTests: GRDBTestCase {
         }
         
         let expectedCounts: [Int]
-#if SQLITE_ENABLE_SNAPSHOT || (!GRDBCUSTOMSQLITE && !GRDBCIPHER && (compiler(>=5.7.1) || !(os(macOS) || targetEnvironment(macCatalyst))))
+#if SQLITE_ENABLE_SNAPSHOT || (!GRDBCUSTOMSQLITE && !GRDBCIPHER && (!os(Linux) && (compiler(>=5.7.1) || !(os(macOS) || targetEnvironment(macCatalyst)))))
         // Optimization available
         expectedCounts = [0, 1]
 #else
@@ -498,7 +498,7 @@ class ValueObservationTests: GRDBTestCase {
     
     // MARK: - Snapshot Observation
     
-#if SQLITE_ENABLE_SNAPSHOT || (!GRDBCUSTOMSQLITE && !GRDBCIPHER && (compiler(>=5.7.1) || !(os(macOS) || targetEnvironment(macCatalyst))))
+#if SQLITE_ENABLE_SNAPSHOT || (!GRDBCUSTOMSQLITE && !GRDBCIPHER && (!os(Linux) && (compiler(>=5.7.1) || !(os(macOS) || targetEnvironment(macCatalyst)))))
     func testDatabaseSnapshotPoolObservation() throws {
         let dbPool = try makeDatabasePool()
         try dbPool.write { try $0.execute(sql: "CREATE TABLE t(id INTEGER PRIMARY KEY AUTOINCREMENT)") }
@@ -1022,7 +1022,7 @@ class ValueObservationTests: GRDBTestCase {
             }
             
             let initialValueExpectation = self.expectation(description: "")
-#if SQLITE_ENABLE_SNAPSHOT || (!GRDBCUSTOMSQLITE && !GRDBCIPHER && (compiler(>=5.7.1) || !(os(macOS) || targetEnvironment(macCatalyst))))
+#if SQLITE_ENABLE_SNAPSHOT || (!GRDBCUSTOMSQLITE && !GRDBCIPHER && (!os(Linux) && (compiler(>=5.7.1) || !(os(macOS) || targetEnvironment(macCatalyst)))))
             initialValueExpectation.assertForOverFulfill = true
 #else
             // ValueObservation on DatabasePool will notify the first value twice
@@ -1080,7 +1080,7 @@ class ValueObservationTests: GRDBTestCase {
             }
             
             let initialValueExpectation = self.expectation(description: "")
-#if SQLITE_ENABLE_SNAPSHOT || (!GRDBCUSTOMSQLITE && !GRDBCIPHER && (compiler(>=5.7.1) || !(os(macOS) || targetEnvironment(macCatalyst))))
+#if SQLITE_ENABLE_SNAPSHOT || (!GRDBCUSTOMSQLITE && !GRDBCIPHER && (!os(Linux) && (compiler(>=5.7.1) || !(os(macOS) || targetEnvironment(macCatalyst)))))
             initialValueExpectation.assertForOverFulfill = true
 #else
             // ValueObservation on DatabasePool will notify the first value twice

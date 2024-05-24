@@ -1,5 +1,5 @@
 // swiftlint:disable:next line_length
-#if SQLITE_ENABLE_SNAPSHOT || (!GRDBCUSTOMSQLITE && !GRDBCIPHER && (compiler(>=5.7.1) || !(os(macOS) || targetEnvironment(macCatalyst))))
+#if SQLITE_ENABLE_SNAPSHOT || (!GRDBCUSTOMSQLITE && !GRDBCIPHER && (!os(Linux) && (compiler(>=5.7.1) || !(os(macOS) || targetEnvironment(macCatalyst)))))
 /// A database connection that allows concurrent accesses to an unchanging
 /// database content, as it existed at the moment the snapshot was created.
 ///

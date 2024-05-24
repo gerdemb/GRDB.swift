@@ -1,5 +1,5 @@
 // swiftlint:disable:next line_length
-#if SQLITE_ENABLE_SNAPSHOT || (!GRDBCUSTOMSQLITE && !GRDBCIPHER && (compiler(>=5.7.1) || !(os(macOS) || targetEnvironment(macCatalyst))))
+#if SQLITE_ENABLE_SNAPSHOT || (!GRDBCUSTOMSQLITE && !GRDBCIPHER && (!os(Linux) && (compiler(>=5.7.1) || !(os(macOS) || targetEnvironment(macCatalyst)))))
 /// An instance of WALSnapshot records the state of a WAL mode database for some
 /// specific point in history.
 ///
